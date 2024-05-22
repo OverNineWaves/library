@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/library}" th:object="${person}">
+
+
+    <label for = "first_name">Enter first name</label>
+    <input type="text" th:field = "*{firstName}" id = "first_name">
+    <br>
+
+    <label for = "surname">Enter surname</label>
+    <input type="text" th:field = "*{surName}" id = "surname">
+    <br>
+
+    <label for = "patronymic">Enter patronymic</label>
+    <input type="text" th:field = "*{patronymic}" id = "patronymic">
+    <br>
+
+    <label for = "year">Enter birthyear</label>
+    <input type="text" th:field = "*{year}" id = "year">
+    <br>
+
+    <input type="submit" value="Create Person">
+</form>
+</body>
+</html>
