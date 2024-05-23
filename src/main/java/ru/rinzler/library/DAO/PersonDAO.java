@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.rinzler.library.Models.Person;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -42,5 +41,10 @@ public class PersonDAO {
             person.setYear(att.getYear());
         }
         return person;
+    }
+
+    public void edit(Person editPerson, int id){
+        String sql = "update Person set firstName = ?, surName = ?, patronymic = ?, year = ? where id = ?";
+        jdbcTemplate.update(sql, editPerson.getFirstName(), editPerson.getSurName(), editPerson.getPatronymic(), editPerson.getYear(), id);
     }
 }

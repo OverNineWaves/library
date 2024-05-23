@@ -26,7 +26,7 @@ public class LibraryController {
     }
 
     @GetMapping("/all")
-    public String indexPersons(Model model){
+    public String peopleIndex(Model model){
         model.addAttribute("index", personDAO.index());
         return "person/index";
     }
@@ -47,5 +47,17 @@ public class LibraryController {
     public String showPerson(@PathVariable ("id") int id, Model model){
         model.addAttribute("person", personDAO.show(id));
         return "person/show";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editPersonPage(@PathVariable ("id") int id, Model model){
+        model.addAttribute("person", personDAO.show(id));
+        return "person/edit";
+    }
+
+    @PatchMapping("/edit/{id}")
+    public String editPerson(@ModelAttribute ("person") Person person, @PathVariable ("id") int id){
+        personDAO.edit(person, id);
+        return "redirect:/library";
     }
 }
