@@ -2,10 +2,28 @@ package ru.rinzler.library.Models;
 
 public class Person {
     //(поля: ФИО (UNIQUE), год рождения)
+    private int id;
     private String firstName;
     private String surName;
     private String patronymic;
     private int year;
+
+    public Person(){}
+    public Person (int id, String firstName, String surName, String patronymic, int year){
+        this.id = id;
+        this.firstName = firstName;
+        this.surName = surName;
+        this.patronymic = patronymic;
+        this.year = year;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;

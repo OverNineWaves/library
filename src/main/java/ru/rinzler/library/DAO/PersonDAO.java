@@ -19,10 +19,9 @@ public class PersonDAO {
     }
 
     public List<Person> index(){
-     List<Person> personList = new ArrayList<>();
-     String sql = "select * Person";
-     personList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Person.class));
-        return personList;
+     String sql = "select * from Person";
+     return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Person.class));
+
     }
 
     public void addPerson(Person person){

@@ -6,6 +6,11 @@
 </head>
 <body>
 
-<dev th:each = "">
+<dev th:each="person: ${index}">
+<!--    <a th:href="@{/library/{id}(id=${person.getId()})}"-->
+       <a th:text="${person.getFirstName()}">name</a>
+
+</dev>
+
 </body>
 </html>
