@@ -28,4 +28,19 @@ public class PersonDAO {
         String sql = "insert into Person (firstName, surName, patronymic, year) values (?,?,?,?)";
         jdbcTemplate.update(sql, person.getFirstName(), person.getSurName(), person.getPatronymic(), person.getYear());
     }
+    public Person show(int id){
+
+        List<Person> personAtt;
+        String sql = "select * from Person where id = ?";
+        Person person = new Person();
+        personAtt = jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Person.class));
+        for (Person att : personAtt){
+            person.setId(att.getId());
+            person.setFirstName(att.getFirstName());
+            person.setSurName(att.getSurName());
+            person.setPatronymic(att.getPatronymic());
+            person.setYear(att.getYear());
+        }
+        return person;
+    }
 }

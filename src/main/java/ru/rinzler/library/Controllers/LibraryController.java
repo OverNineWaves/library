@@ -3,10 +3,7 @@ package ru.rinzler.library.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.rinzler.library.DAO.PersonDAO;
 import ru.rinzler.library.Models.Person;
 
@@ -44,5 +41,11 @@ public class LibraryController {
     public String addPerson(@ModelAttribute ("person") Person person){
         personDAO.addPerson(person);
         return "redirect:/library";
+    }
+
+    @GetMapping("/{id}")
+    public String showPerson(@PathVariable ("id") int id, Model model){
+        model.addAttribute("person", personDAO.show(id));
+        return "person/show";
     }
 }
