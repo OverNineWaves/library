@@ -5,12 +5,27 @@
     <title>Title</title>
 </head>
 <body>
+<a href="/library/addPerson">Add new person</a>
+<br/>
+
 
 <dev th:each="person: ${index}">
-<!--    <a th:href="@{/library/{id}(id=${person.getId()})}"-->
-       <a th:text="${person.getFirstName()}">name</a>
+    <a
+        th:href="@{/library/{id}(id=${person.getId()})}"
 
+        th:text="${person.getFirstName()}">value</a>
+
+    <a  th:text="${person.getSurName()}">value</a>
+
+    <a  th:text="${person.getPatronymic()}">value</a>
+
+    <form th:method="DELETE" th:action="@{/library/{id}(id=${person.getId()})}">
+        <input type="submit" value="Delete"/>
+    </form>
+
+    <br/>
 </dev>
+
 
 </body>
 </html>

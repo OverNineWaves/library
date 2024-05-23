@@ -17,15 +17,15 @@ public class LibraryController {
 
     PersonDAO personDAO;
 
-    @GetMapping
-    public String printWelcome(Model model) {
+//    @GetMapping
+//    public String printWelcome(Model model) {
+//
+//        model.addAttribute("message", "Simple text");
+//        return "start";
+//
+//    }
 
-        model.addAttribute("message", "Simple text");
-        return "start";
-
-    }
-
-    @GetMapping("/all")
+    @GetMapping("")
     public String peopleIndex(Model model){
         model.addAttribute("index", personDAO.index());
         return "person/index";
@@ -58,6 +58,11 @@ public class LibraryController {
     @PatchMapping("/edit/{id}")
     public String editPerson(@ModelAttribute ("person") Person person, @PathVariable ("id") int id){
         personDAO.edit(person, id);
+        return "redirect:/library";
+    }
+    @DeleteMapping("{id}")
+    public String deletePerson(@PathVariable("id") int id){
+        personDAO.delete(id);
         return "redirect:/library";
     }
 }
