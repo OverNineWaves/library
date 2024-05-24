@@ -78,8 +78,14 @@ public class LibraryController {
     }
 
     @GetMapping("/books/add")
-    public String addBook(Model model){
+    public String addBookPage(Model model){
         model.addAttribute("book", new Book());
         return "/book/add";
+    }
+
+    @PostMapping("/books")
+    public String addBook (@ModelAttribute ("book") Book book){
+        bookDAO.addBook(book);
+        return "redirect:/library/books";
     }
 }

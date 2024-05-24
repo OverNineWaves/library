@@ -24,4 +24,9 @@ public class BookDAO {
         bookList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Book.class));
         return bookList;
     }
+
+    public void addBook(Book book){
+        String sql = "insert into Book (title, author, year) values (?, ?, ?)";
+        jdbcTemplate.update(sql, book.getTitle(), book.getAuthor(), book.getYear());
+    }
 }
