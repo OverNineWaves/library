@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<dev th:each="book: ${index}">
+<!--       <a   th:href="@{/library/books/{id}(id=${book.getId()})}"-->
+            <a  th:text="${book.getTitle()}">value</a>
+
+            <a  th:text="${book.getAuthor()}">value</a>
+            <a  th:text="${book.getYear()}">value</a>
+
+<!--    <form th:method="DELETE" th:action="@{/library/{id}(id=${person.getId()})}">-->
+<!--        <input type="submit" value="Delete"/>-->
+<!--    </form>-->
+
+    <br/>
+</dev>
+
+
+
+</body>
+</html>
