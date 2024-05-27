@@ -90,9 +90,15 @@ public class LibraryController {
     }
 
     @GetMapping("/books/{id}")
-    public String editBookPage(Model model){
-        model.addAttribute("book", new Book());
+    public String editBookPage(Model model, @PathVariable ("id") int id){
+        model.addAttribute("book", bookDAO.show(id));
         return "book/edit";
+    }
+
+    @PatchMapping("/books/{id}")
+    public String editBook(@ModelAttribute ("book") Book book, int id){
+
+        return "redirect:/library/books";
     }
 
 }

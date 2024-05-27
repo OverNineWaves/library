@@ -28,7 +28,6 @@ public class PersonDAO {
         jdbcTemplate.update(sql, person.getFirstName(), person.getSurName(), person.getPatronymic(), person.getYear());
     }
     public Person show(int id){
-
         List<Person> personAtt;
         String sql = "select * from Person where id = ?";
         Person person = new Person();

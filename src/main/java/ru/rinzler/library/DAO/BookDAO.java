@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.rinzler.library.Models.Book;
+import ru.rinzler.library.Models.Person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,19 @@ public class BookDAO {
     public void addBook(Book book){
         String sql = "insert into Book (title, author, year) values (?, ?, ?)";
         jdbcTemplate.update(sql, book.getTitle(), book.getAuthor(), book.getYear());
+    }
+
+    public Book show(int id){
+        List<Book> bookList = new ArrayList<>();
+        Book book = new Book();
+        String sql = "select * from Book where id = ?";
+        bookList =  jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Book.class));
+        for (Book att : bookList){
+            book.setAuthor(att.getAuthor());
+            book.setTitle(att.getTitle());
+            book.setYear(att.getYear());
+        }
+        return book;
     }
 
     public void edit(Book book, int id){
