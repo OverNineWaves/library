@@ -88,4 +88,11 @@ public class LibraryController {
         bookDAO.addBook(book);
         return "redirect:/library/books";
     }
+
+    @GetMapping("/books/{id}")
+    public String editBookPage(Model model){
+        model.addAttribute("book", new Book());
+        return "book/edit";
+    }
+
 }

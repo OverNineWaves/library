@@ -29,4 +29,12 @@ public class BookDAO {
         String sql = "insert into Book (title, author, year) values (?, ?, ?)";
         jdbcTemplate.update(sql, book.getTitle(), book.getAuthor(), book.getYear());
     }
+
+    public void edit(Book book, int id){
+
+    }
+
+    public void delete(int id){
+
+    }
 }
