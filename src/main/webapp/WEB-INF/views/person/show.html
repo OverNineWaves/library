@@ -12,9 +12,14 @@
 <p th:text = "${person.getPatronymic()}">value</p>
 <p th:text = "${person.getYear()}">value</p>
 
-<div th:each = "book : ${books}">
-<a  th:text="${book.getTitle()}">value</a>
-</div>
+<span th:if = "${books.isEmpty()}">нет книг</span>
+<span th:else  th:each = "book : ${books}">
+    <a th:text="${book.getTitle()}">value</a>
+</span>
+
+<br/>
+<!--<span th:if="${condition}" th:text="'Истина'"></span>-->
+<!--<span th:else th:text="'Ложь'"></span>-->
 
 <a th:href="@{/library/edit/{id}(id=${person.getId()})}">Edit</a>
 
