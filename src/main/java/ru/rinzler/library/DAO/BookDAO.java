@@ -51,6 +51,7 @@ public class BookDAO {
     }
 
     public void delete(int id){
-
+        String sql = "delete from Book where id = ?";
+        jdbcTemplate.update(sql, id);
     }
 }

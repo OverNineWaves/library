@@ -102,4 +102,11 @@ public class LibraryController {
         return "redirect:/library/books";
     }
 
+    @GetMapping("/books/{id}")
+    public String showBook(@PathVariable ("id") int id, Model model){
+        model.addAttribute("book", bookDAO.show(id));
+        return "book/show";
+    }
+
+
 }
