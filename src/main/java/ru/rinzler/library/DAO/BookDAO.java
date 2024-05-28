@@ -32,11 +32,12 @@ public class BookDAO {
     }
 
     public Book show(int id){
-        List<Book> bookList = new ArrayList<>();
+        List<Book> bookList;
         Book book = new Book();
         String sql = "select * from Book where id = ?";
         bookList =  jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Book.class));
         for (Book att : bookList){
+            book.setId(att.getId());
             book.setAuthor(att.getAuthor());
             book.setTitle(att.getTitle());
             book.setYear(att.getYear());
@@ -45,7 +46,8 @@ public class BookDAO {
     }
 
     public void edit(Book book, int id){
-
+        String sql ="update Book set title = ?, author = ?, year = ? where id = ?";
+        jdbcTemplate.update(sql, book.getTitle(), book.getAuthor(), book.getYear(), id);
     }
 
     public void delete(int id){
