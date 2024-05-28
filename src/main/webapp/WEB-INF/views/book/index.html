@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<dev th:each="book: ${index}">
+<div th:each="book: ${index}">
        <a   th:href="@{/library/books/{id}(id=${book.getId()})}"
             <a  th:text="${book.getTitle()}">value</a>
 
@@ -18,7 +18,7 @@
     </form>
 
     <br/>
-</dev>
+</div>
 
 
 

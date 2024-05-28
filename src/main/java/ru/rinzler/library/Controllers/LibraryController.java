@@ -51,6 +51,7 @@ public class LibraryController {
     @GetMapping("/{id}")
     public String showPerson(@PathVariable ("id") int id, Model model){
         model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("books", personDAO.showBooks(id));
         return "person/show";
     }
 

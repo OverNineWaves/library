@@ -12,6 +12,10 @@
 <p th:text = "${person.getPatronymic()}">value</p>
 <p th:text = "${person.getYear()}">value</p>
 
+<div th:each = "book : ${books}">
+<a  th:text="${book.getTitle()}">value</a>
+</div>
+
 <a th:href="@{/library/edit/{id}(id=${person.getId()})}">Edit</a>
 
 <form th:method="DELETE" th:action="@{/library/{id}(id=${person.getId()})}">
