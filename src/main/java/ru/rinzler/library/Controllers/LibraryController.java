@@ -108,5 +108,9 @@ public class LibraryController {
         return "book/show";
     }
 
-
+    @DeleteMapping("books/{id}")
+    public String deleteBook(@PathVariable ("id") int id){
+        bookDAO.delete(id);
+        return "redirect:/library/books";
+    }
 }
