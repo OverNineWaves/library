@@ -9,10 +9,10 @@ import ru.rinzler.library.Models.Person;
 
 @Controller
 @RequestMapping("/library")
-public class PersonController {
+public class PeopleController {
     PersonDAO personDAO;
     @Autowired
-    public PersonController(PersonDAO personDAO) {
+    public PeopleController(PersonDAO personDAO) {
         this.personDAO = personDAO;
     }
 

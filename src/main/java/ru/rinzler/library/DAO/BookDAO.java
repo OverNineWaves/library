@@ -10,6 +10,9 @@ import ru.rinzler.library.Models.Person;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ru.rinzler.library.Utils.DaoSetAttribute.getBookAtt;
+import static ru.rinzler.library.Utils.DaoSetAttribute.getPersonAtt;
+
 @Component
 public class BookDAO {
 
@@ -33,16 +36,17 @@ public class BookDAO {
 
     public Book show(int id){
         List<Book> bookList;
-        Book book = new Book();
+//        Book book = new Book();
         String sql = "select * from Book where id = ?";
         bookList =  jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Book.class));
-        for (Book att : bookList){
-            book.setId(att.getId());
-            book.setAuthor(att.getAuthor());
-            book.setTitle(att.getTitle());
-            book.setYear(att.getYear());
-        }
-        return book;
+        return getBookAtt(bookList);
+//        for (Book att : bookList){
+//            book.setId(att.getId());
+//            book.setAuthor(att.getAuthor());
+//            book.setTitle(att.getTitle());
+//            book.setYear(att.getYear());
+//        }
+//        return book;
     }
 
     public void edit(Book book, int id){
@@ -56,17 +60,18 @@ public class BookDAO {
     }
 
     public Person showPerson(int id){
-        Person person = new Person();
-        String sql = "";
+//        Person person = new Person();
+        String sql = "select Person.* from Book join Person on Book.author_id = Person.id where Book.id = ?";
         List<Person> personList;
         personList = jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Person.class));
-        for (Person p : personList){
-            person.setId(p.getId());
-            person.setFirstName(p.getFirstName());
-            person.setSurName(p.getSurName());
-            person.setPatronymic(p.getPatronymic());
-            person.setYear(p.getYear());
-        }
-        return person;
+        return getPersonAtt(personList);
+//        for (Person p : personList){
+//            person.setId(p.getId());
+//            person.setFirstName(p.getFirstName());
+//            person.setSurName(p.getSurName());
+//            person.setPatronymic(p.getPatronymic());
+//            person.setYear(p.getYear());
+//        }
+//        return person;
     }
 }

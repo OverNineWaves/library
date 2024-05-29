@@ -9,6 +9,8 @@ import ru.rinzler.library.Models.Person;
 
 import java.util.List;
 
+import static ru.rinzler.library.Utils.DaoSetAttribute.getPersonAtt;
+
 @Component
 public class PersonDAO {
     private final JdbcTemplate jdbcTemplate;
@@ -31,17 +33,20 @@ public class PersonDAO {
     public Person show(int id){
         List<Person> personAtt;
         String sql = "select * from Person where id = ?";
-        Person person = new Person();
+//        Person person = new Person();
         personAtt = jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Person.class));
-        for (Person att : personAtt){
-            person.setId(att.getId());
-            person.setFirstName(att.getFirstName());
-            person.setSurName(att.getSurName());
-            person.setPatronymic(att.getPatronymic());
-            person.setYear(att.getYear());
-        }
-        return person;
+        return getPersonAtt(personAtt);
+//        for (Person att : personAtt){
+//            person.setId(att.getId());
+//            person.setFirstName(att.getFirstName());
+//            person.setSurName(att.getSurName());
+//            person.setPatronymic(att.getPatronymic());
+//            person.setYear(att.getYear());
+//        }
+//        return person;
     }
+
+
 
     public void edit(Person editPerson, int id){
         String sql = "update Person set firstName = ?, surName = ?, patronymic = ?, year = ? where id = ?";
