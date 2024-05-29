@@ -5,18 +5,20 @@
     <title>Title</title>
 </head>
 <body>
+<a href="/books/add">Add new person</a>
+<br/>
+
 
 <div th:each="book: ${index}">
-       <a   th:href="@{/library/books/{id}(id=${book.getId()})}"
+       <a   th:href="@{/books/{id}(id=${book.getId()})}"
             <a  th:text="${book.getTitle()}">value</a>
 
             <a  th:text="${book.getAuthor()}">value</a>
             <a  th:text="${book.getYear()}">value</a>
 
-    <form th:method="DELETE" th:action="@{/library/books/{id}(id=${book.getId()})}">
+    <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
         <input type="submit" value="Delete"/>
     </form>
-
     <br/>
 </div>
 

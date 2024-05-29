@@ -54,4 +54,19 @@ public class BookDAO {
         String sql = "delete from Book where id = ?";
         jdbcTemplate.update(sql, id);
     }
+
+    public Person showPerson(int id){
+        Person person = new Person();
+        String sql = "";
+        List<Person> personList;
+        personList = jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Person.class));
+        for (Person p : personList){
+            person.setId(p.getId());
+            person.setFirstName(p.getFirstName());
+            person.setSurName(p.getSurName());
+            person.setPatronymic(p.getPatronymic());
+            person.setYear(p.getYear());
+        }
+        return person;
+    }
 }
