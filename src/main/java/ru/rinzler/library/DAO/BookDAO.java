@@ -76,7 +76,7 @@ public class BookDAO {
     }
 
     public void releaseBook(int id){
-        String sql = "update Book set author_id = null where author_id = ?";
+        String sql = "update Book set author_id = null where id = ?";
         jdbcTemplate.update(sql, id);
     }
 }
