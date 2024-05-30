@@ -16,7 +16,9 @@
 
 <p th:text = "${person.getFirstName()}">value</p>
 
-<!--<form th:method="PATCH" th:action = "@{books/{id}(id = ${}) }}"-->
+<form th:method="PATCH" th:action = "@{/books/{id}/release(id = ${book.getId()})}">
+    <input type="submit" value="Release book">
+</form>
 
 
 <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
