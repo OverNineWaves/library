@@ -74,4 +74,9 @@ public class BookDAO {
 //        }
 //        return person;
     }
+
+    public void releaseBook(int id){
+        String sql = "update Book set author_id = null where author_id = ?";
+        jdbcTemplate.update(sql, id);
+    }
 }

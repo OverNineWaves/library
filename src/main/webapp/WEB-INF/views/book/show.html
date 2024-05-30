@@ -10,10 +10,14 @@
 <p th:text = "${book.getTitle()}">value</p>
 <p th:text = "${book.getAuthor()}">value</p>
 <p th:text = "${book.getYear()}">value</p>
+<br/>
+<a th:href="@{/books/edit/{id}(id=${book.getId()})}">Edit</a>
+<br/>
 
 <p th:text = "${person.getFirstName()}">value</p>
 
-<a th:href="@{/books/edit/{id}(id=${book.getId()})}">Edit</a>
+<!--<form th:method="PATCH" th:action = "@{books/{id}(id = ${}) }}"-->
+
 
 <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
     <input type="submit" value="Delete"/>
