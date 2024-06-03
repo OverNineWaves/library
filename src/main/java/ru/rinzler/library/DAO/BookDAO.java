@@ -23,10 +23,8 @@ public class BookDAO {
     }
 
     public List<Book> index(){
-        List<Book> bookList = new ArrayList<>();
         String sql = "select * from Book";
-        bookList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Book.class));
-        return bookList;
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Book.class));
     }
 
     public void addBook(Book book){
@@ -78,5 +76,10 @@ public class BookDAO {
     public void releaseBook(int id){
         String sql = "update Book set author_id = null where id = ?";
         jdbcTemplate.update(sql, id);
+    }
+
+    public void giveTo(int id, Person person){
+        String sql = "update Book set author_id = ? where id = ?";
+        jdbcTemplate.update(sql, person.getId(), id);
     }
 }

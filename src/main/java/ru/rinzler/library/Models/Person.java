@@ -1,7 +1,6 @@
 package ru.rinzler.library.Models;
 
 public class Person {
-    //(поля: ФИО (UNIQUE), год рождения)
     private int id;
     private String firstName;
     private String surName;
@@ -9,6 +8,7 @@ public class Person {
     private int year;
 
     public Person(){}
+
     public Person (int id, String firstName, String surName, String patronymic, int year){
         this.id = id;
         this.firstName = firstName;

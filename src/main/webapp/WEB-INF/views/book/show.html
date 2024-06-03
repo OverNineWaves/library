@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -14,16 +14,45 @@
 <a th:href="@{/books/edit/{id}(id=${book.getId()})}">Edit</a>
 <br/>
 
-<p th:text = "${person.getFirstName()}">value</p>
+
 
 <form th:method="PATCH" th:action = "@{/books/{id}/release(id = ${book.getId()})}">
+
+    <p th:text = "${bookPerson.getFirstName()}">value</p>
+    <br/>
     <input type="submit" value="Release book">
+
 </form>
 
+<br/>
 
 <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
     <input type="submit" value="Delete"/>
 </form>
+<br/>
+
+<form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
+    <label for="people">choose</label>
+    <select th:object="${person}" th:field="*{id}" id="people">
+        <option th:each ="person:${people}"
+                th:value="${person.getId()}"
+                th:text="${person.getFirstName()}"
+        >value</option>
+    </select>
+    <input type="submit" value="Select"/>
+</form>
+
+
+
+
+<!--<select>-->
+<!--    <option value="apple">Apple</option>-->
+<!--    <option value="banana">Banana</option>-->
+<!--    <option value="orange">Orange</option>-->
+<!--    <option value="pear">Pear</option>-->
+<!--</select>-->
+
+
 
 </body>
 </html>
